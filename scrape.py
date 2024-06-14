@@ -27,11 +27,11 @@ try:
         writer = csv.writer(file)
         writer.writerow(['Title', 'Quantity', 'Price', 'Discount'])  # Write the header row
 
-        last_height = driver.execute_script("return document.body.scrollHeight") - 500
+        last_height = driver.execute_script("return document.body.scrollHeight") - 200
         
         while True:
             # Scroll down to the bottom of the page
-            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            driver.execute_script("window.scrollTo(0, document.body.scrollHeight - 200);")
             
             # Wait to allow the page to load
             time.sleep(5)
@@ -60,7 +60,7 @@ try:
                     print(f"Title: {title}, Quantity: {qty}, Price: {price}, Discount: {discount}")
 
             # Check if we've reached the bottom of the page
-            new_height = driver.execute_script("return document.body.scrollHeight") - 500
+            new_height = driver.execute_script("return document.body.scrollHeight") - 200
             if new_height == last_height:
                 break
             last_height = new_height
